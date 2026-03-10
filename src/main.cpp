@@ -1,12 +1,22 @@
-// main.cpp
-#include <fmt/core.h>
-#include <sqlite3.h>
+#include <wx/wx.h>
 
-#include <cstdio>
+class MyApp : public wxApp {
+public:
+    bool OnInit() override;
+};
 
-// main function!
-int main() {
-  fmt::print("Hello, world!\n");
-  fmt::print("{}\n", sqlite3_libversion());
-  return 0;
+class MyFrame : public wxFrame {
+public:
+    MyFrame() : wxFrame(nullptr, wxID_ANY, "wxWidgets + vcpkg CI!!") {
+        new wxStaticText(this, wxID_ANY, "Hello wxWidgets!", wxPoint(20,20));
+    }
+};
+
+bool MyApp::OnInit() {
+    MyFrame* frame = new MyFrame();
+    frame->Show(true);
+    return true;
 }
+
+wxIMPLEMENT_APP(MyApp);
+

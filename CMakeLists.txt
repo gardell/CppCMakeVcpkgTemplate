@@ -7,8 +7,7 @@ if(NOT APPLE)
 endif()
 
 # Find dependencies provided by vcpkg (via vcpkg.cmake)
-find_package(unofficial-sqlite3 CONFIG REQUIRED)
-find_package(fmt CONFIG REQUIRED)
+find_package(wxWidgets CONFIG REQUIRED)
 
 set(
     CPP_TEMPLATE_SOURCES
@@ -21,12 +20,12 @@ set(
 
 # main target
 add_executable(main ${CPP_TEMPLATE_SOURCES})
-target_link_libraries(main PRIVATE unofficial::sqlite3::sqlite3 fmt::fmt-header-only)
+target_link_libraries(main PRIVATE wx::core wx::base)
 set_property(TARGET main PROPERTY CXX_STANDARD 23)
 
 # tests target
 add_executable(tests ${CPP_TEMPLATE_TEST_SOURCES})
-target_link_libraries(tests PRIVATE unofficial::sqlite3::sqlite3 fmt::fmt-header-only)
+target_link_libraries(tests PRIVATE wx::core wx::base)
 set_property(TARGET tests PROPERTY CXX_STANDARD 23)
 enable_testing()
 add_test(tests tests)
